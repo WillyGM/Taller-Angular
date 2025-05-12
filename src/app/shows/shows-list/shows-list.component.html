@@ -1,0 +1,58 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4 order-md-1 mb-4" *ngIf="selectedSerie">
+      <div class="card shadow-sm" style="background-color: #f8f9fa;">
+        <img
+          [src]="selectedSerie.poster"
+          class="card-img-top"
+          alt="Imagen de la serie"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-info">{{ selectedSerie.name }}</h5>
+          <p class="card-text text-muted">{{ selectedSerie.description }}</p>
+          <a
+            [href]="selectedSerie.webpage"
+            target="_blank"
+            class="btn btn-outline-primary"
+          >
+            Más información
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 order-md-2">
+      <h1 class="text-center text-primary mb-3">Catálogo de Series</h1>
+
+      <div class="mb-3 text-center text-secondary fw-semibold">
+        Promedio de temporadas: {{ averageSeasons | number:'1.2-2' }}
+      </div>
+
+      <table
+        class="table table-hover"
+        style="background-color: #fff; border: 1px solid #dee2e6;"
+      >
+        <thead>
+          <tr class="bg-info text-white">
+            <th>#</th>
+            <th>Título</th>
+            <th>Canal</th>
+            <th>Temporadas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let serie of series"
+            (click)="selectSerie(serie)"
+            style="cursor: pointer;"
+          >
+            <td>{{ serie.id }}</td>
+            <td>{{ serie.name }}</td>
+            <td>{{ serie.channel }}</td>
+            <td>{{ serie.seasons }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
